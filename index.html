@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CX News/VOC Monitor</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">CX Research Tool</p>
+        <h1>CX News/VOC Monitor</h1>
+        <p class="hero-desc">
+          네이버 뉴스 검색 API를 통해 키워드별 이슈를 수집하고, CX 관점의 이슈 유형·감성·보고서 메모를 자동 분류합니다.
+        </p>
+      </div>
+    </header>
+
+    <section class="search-panel">
+      <div class="field field-keyword">
+        <label for="searchInput">검색 키워드</label>
+        <input id="searchInput" type="text" value="KB Pay 혜택" placeholder="예: KB Pay 혜택, 콜센터 대기, 은행 지점 대기시간" />
+      </div>
+
+      <div class="field">
+        <label for="displayInput">검색 개수</label>
+        <input id="displayInput" type="number" min="1" max="100" value="20" />
+      </div>
+
+      <div class="field">
+        <label for="sortSelect">정렬</label>
+        <select id="sortSelect">
+          <option value="date">최신순</option>
+          <option value="sim">정확도순</option>
+        </select>
+      </div>
+
+      <div class="button-group">
+        <button id="searchButton" class="primary">뉴스 조회</button>
+        <button id="downloadButton" class="secondary">CSV 다운로드</button>
+      </div>
+    </section>
+
+    <section id="statusBox" class="status-box">
+      검색어를 입력한 뒤 <strong>뉴스 조회</strong>를 누르세요.
+    </section>
+
+    <section id="summaryBox" class="summary-grid"></section>
+
+    <section class="controls">
+      <div class="field">
+        <label for="tagFilter">이슈 태그 필터</label>
+        <select id="tagFilter">
+          <option value="전체">전체</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="sentimentFilter">감성 필터</label>
+        <select id="sentimentFilter">
+          <option value="전체">전체</option>
+          <option value="긍정 추정">긍정 추정</option>
+          <option value="부정 추정">부정 추정</option>
+          <option value="중립/판단보류">중립/판단보류</option>
+        </select>
+      </div>
+
+      <div class="field field-keyword">
+        <label for="tableSearchInput">결과 내 검색</label>
+        <input id="tableSearchInput" type="text" placeholder="제목·요약·메모에서 재검색" />
+      </div>
+    </section>
+
+    <section class="table-card">
+      <div class="table-header">
+        <h2>뉴스 수집 결과</h2>
+        <p id="resultCount">0건</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>날짜</th>
+              <th>제목</th>
+              <th>요약</th>
+              <th>이슈 태그</th>
+              <th>감성 추정</th>
+              <th>보고서 메모</th>
+              <th>링크</th>
+            </tr>
+          </thead>
+          <tbody id="resultBody">
+            <tr>
+              <td colspan="7" class="empty">검색 결과가 없습니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="guide">
+      <h2>활용 예시</h2>
+      <div class="guide-grid">
+        <div>
+          <strong>카드사</strong>
+          <p>KB Pay 혜택, 포인트리, 카드 혜택, 카드 고객센터, 앱 오류</p>
+        </div>
+        <div>
+          <strong>은행</strong>
+          <p>은행 지점 대기시간, 모바일 번호표, 콜센터 대기, 인터넷뱅킹 장애</p>
+        </div>
+        <div>
+          <strong>호텔</strong>
+          <p>호텔 예약 앱, 체크인 대기, 멤버십 혜택, 고객 후기, 서비스 불만</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./script.js"></script>
+</body>
+</html>
